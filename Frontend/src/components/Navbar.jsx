@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Navbar() {
+    const [sticky,setSticky]=useState(false);
+    useEffect(()=>{
+        const handleScroll=()=>{
+            if(window.scrollY>0){
+                setSticky(true);
+            }else{
+                setSticky(false);
+            }
+        }
+        window.addEventListener('scroll',handleScroll)
+
+        return ()=>{
+            window.removeEventListener('scroll',handleScroll);
+        }
+    },[])
     const NavItem = (<>
-        <li><a>Home</a></li>
-        <li><a>Course</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/course">Course</a></li>
         <li><a>Contact</a></li>
         <li><a>About</a></li>
     </>)
     return (
         <>
-            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 '>
-                <div className="navbar bg-base-100">
+            <div className={`max-w-screen-2xl container mx-auto md:px-20 px-4 fixed top-0 left-0 right-0 z-50 ${
+                sticky?"sticky-navbar shadow-md bg-slate-200 duration-300 transition-all ease-in-out":""
+            }`}>
+                <div className="navbar ">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,7 +46,7 @@ function Navbar() {
                             </ul>
                         </div>
                         <div className="hidden md:block">
-                            <label className="input input-bordered flex items-center gap-2">
+                            <label className="input input-bordered flex items-center gap-2 bg-white">
                                 <input type="text" className="grow" placeholder="Search" />
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
                             </label>
