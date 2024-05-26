@@ -42,7 +42,7 @@ function Freebook() {
     const filterData = list.filter((data) => data.category === "Free");
     return (
         <>
-            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 '>
+            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 dark:bg-slate-900 dark:text-white'>
                 <div>
                     <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum minima numquam ullam tempora, dolor iste repellendus itaque doloremque voluptates incidunt maiores dicta illo reiciendis ipsum.</p>
